@@ -1,0 +1,103 @@
+# Locale
+curl http://localhost:8000/api/health/ | python3 -m json.tool
+
+# Via Ngrok
+curl https://your-ngrok-url.ngrok-free.app/api/health/ | python3 -m json.tool
+
+# Locale
+curl -X POST http://localhost:8000/api/test-ollama/ \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "Ciao! Come stai?"}' | python3 -m json.tool
+
+# Via Ngrok
+curl -X POST https://your-ngrok-url.ngrok-free.app/api/test-ollama/ \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "Dimmi una barzelletta"}' | python3 -m json.tool
+
+# Locale
+curl -X POST http://localhost:8000/api/generate-strategy/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "niche": "Fitness and Wellness",
+    "target_audience": "Women 25-40 interested in home workouts",
+    "goals": "Build engaged community and increase followers",
+    "posting_frequency": "5 posts per week"
+  }' | python3 -m json.tool
+
+# Via Ngrok
+curl -X POST https://your-ngrok-url.ngrok-free.app/api/generate-strategy/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "niche": "Travel Photography",
+    "target_audience": "Adventure seekers 20-35",
+    "goals": "Grow portfolio and attract clients",
+    "posting_frequency": "3 posts per week"
+  }' | python3 -m json.tool
+
+# Locale
+curl -X POST http://localhost:8000/api/generate-content/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "topic": "Morning workout routine",
+    "post_type": "reel",
+    "tone": "motivational",
+    "target_audience": "Busy professionals"
+  }' | python3 -m json.tool
+
+# Via Ngrok
+curl -X POST https://your-ngrok-url.ngrok-free.app/api/generate-content/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "topic": "Healthy breakfast ideas",
+    "post_type": "carousel",
+    "tone": "friendly",
+    "target_audience": "Health-conscious millennials"
+  }' | python3 -m json.tool
+
+# Locale
+curl -X POST http://localhost:8000/api/generate-trending-reels/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "niche": "Healthy Cooking",
+    "target_audience": "Health-conscious millennials"
+  }' | python3 -m json.tool
+
+# Via Ngrok
+curl -X POST https://your-ngrok-url.ngrok-free.app/api/generate-trending-reels/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "niche": "Digital Marketing",
+    "target_audience": "Small business owners"
+  }' | python3 -m json.tool
+
+# Locale
+curl -X POST http://localhost:8000/api/optimize-idea/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "idea_content": "Post about morning routines for productivity",
+    "optimization_goal": "engagement"
+  }' | python3 -m json.tool
+
+# Via Ngrok
+curl -X POST https://your-ngrok-url.ngrok-free.app/api/optimize-idea/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "idea_content": "Tutorial on meal prep for the week",
+    "optimization_goal": "reach"
+  }' | python3 -m json.tool
+
+# Locale
+curl -X POST http://localhost:8000/api/regenerate-strategy/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "previous_strategy": "Previous strategy content here...",
+    "feedback": "I want more focus on reels and less on static posts"
+  }' | python3 -m json.tool
+
+# Via Ngrok
+curl -X POST https://your-ngrok-url.ngrok-free.app/api/regenerate-strategy/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "previous_strategy": "Old strategy...",
+    "feedback": "Need more engaging hooks and trending audio suggestions"
+  }' | python3 -m json.tool
