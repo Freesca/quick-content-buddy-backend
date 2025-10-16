@@ -1,0 +1,19 @@
+***MODELLO PIU POTENTE (llama3.2)***
+-Nel docker-compose.yml controllare che la voce di web (django) OLLAMA_MODEL
+    OLLAMA_MODEL: llama3.2
+- Poi da terminale fare:
+	make build
+	make up
+	make pull-model
+
+
+***MODELLO PIU VELOCE (llama3.2:1b)***
+-Nel docker-compose.yml controllare che la voce di web (django) OLLAMA_MODEL
+    OLLAMA_MODEL: llama3.2:1b
+- Poi da terminale fare:
+	make build
+	make up
+	make pull-fast-model
+
+
+Per passare da un modello dovete fare make rebuild
