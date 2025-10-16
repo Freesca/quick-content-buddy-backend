@@ -1,3 +1,4 @@
+import re
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
@@ -86,7 +87,6 @@ def generate_strategy(request):
     try:
         data = json.loads(request.body)
         
-        # Estrai parametri
         niche = data.get('niche', '')
         target_audience = data.get('target_audience', 'General audience')
         goals = data.get('goals', 'Increase engagement')
@@ -101,19 +101,42 @@ def generate_strategy(request):
         # Genera il prompt
         prompt = get_strategy_prompt(niche, target_audience, goals, posting_frequency)
         
-        # Chiama Ollama con timeout più lungo
+        # Chiama Ollama
         response_text = call_ollama(prompt, temperature=0.8, max_tokens=4000)
         
-        return JsonResponse({
-            'success': True,
-            'strategy': response_text,
-            'metadata': {
-                'niche': niche,
-                'target_audience': target_audience,
-                'goals': goals,
-                'posting_frequency': posting_frequency
-            }
-        })
+        # ✅ Pulisci la risposta da markdown code blocks
+        # Rimuovi ```json e ``` se presenti
+        cleaned_response = re.sub(r'^```json\s*', '', response_text.strip())
+        cleaned_response = re.sub(r'^```\s*', '', cleaned_response)
+        cleaned_response = re.sub(r'\s*```$', '', cleaned_response)
+        
+        # ✅ Prova a parsare come JSON per validare
+        try:
+            strategy_json = json.loads(cleaned_response)
+            
+            return JsonResponse({
+                'success': True,
+                'strategy': strategy_json,  # ✅ Ritorna JSON parsed
+                'metadata': {
+                    'niche': niche,
+                    'target_audience': target_audience,
+                    'goals': goals,
+                    'posting_frequency': posting_frequency
+                }
+            })
+        except json.JSONDecodeError:
+            # Se il JSON non è valido, ritorna il testo raw
+            return JsonResponse({
+                'success': True,
+                'strategy': cleaned_response,  # Ritorna come stringa
+                'metadata': {
+                    'niche': niche,
+                    'target_audience': target_audience,
+                    'goals': goals,
+                    'posting_frequency': posting_frequency
+                },
+                'warning': 'Response was not valid JSON, returned as text'
+            })
         
     except Exception as e:
         return JsonResponse({

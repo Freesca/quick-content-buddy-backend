@@ -5,7 +5,7 @@ Prompt templates per la generazione di contenuti
 def get_strategy_prompt(niche, target_audience, goals, posting_frequency):
     """Genera il prompt per la strategia di contenuto"""
     return f"""
-You are an expert social media strategist and content creator. Create a comprehensive content strategy for Instagram.
+You are an expert social media strategist. Create a comprehensive Instagram content strategy.
 
 **Client Information:**
 - Niche: {niche}
@@ -13,40 +13,47 @@ You are an expert social media strategist and content creator. Create a comprehe
 - Goals: {goals}
 - Posting Frequency: {posting_frequency}
 
-**Generate a detailed strategy including:**
+**IMPORTANT: Respond ONLY with valid JSON. Do not wrap it in markdown code blocks.**
 
-1. **Content Pillars** (3-5 main themes)
-   - List each pillar with a brief description
-   - Explain why it resonates with the target audience
+Generate a strategy with this EXACT structure:
 
-2. **Monthly Content Calendar** (30 days)
-   - Create a day-by-day posting schedule
-   - Include: Post Type (Reel/Post/Carousel), Topic, Hook/Caption idea, Best posting time
-   - Distribute content across the pillars
-   - Format as a structured table or list
+{{
+  "content_pillars": [
+    {{"name": "Pillar 1", "description": "Why it resonates"}},
+    {{"name": "Pillar 2", "description": "Why it resonates"}},
+    {{"name": "Pillar 3", "description": "Why it resonates"}}
+  ],
+  "calendar": [
+    // Generate exactly 30 daily entries with this structure:
+    {{"day": 1, "post_type": "Reel/Post/Carousel", "pillar": "Which pillar", "topic": "Post topic", "hook": "First line caption", "best_time": "HH:MM AM/PM"}}
+  ],
+  "hashtags": {{
+    "niche": ["hashtag1", "hashtag2", "hashtag3", "hashtag4", "hashtag5"],
+    "trending": ["hashtag1", "hashtag2", "hashtag3", "hashtag4", "hashtag5"],
+    "engagement": ["hashtag1", "hashtag2", "hashtag3", "hashtag4", "hashtag5"]
+  }},
+  "posting_times": [
+    {{"day": "Monday", "times": ["9:00 AM", "3:00 PM"]}},
+    {{"day": "Tuesday", "times": ["9:00 AM", "3:00 PM"]}}
+  ],
+  "engagement_tips": [
+    "Tip 1",
+    "Tip 2",
+    "Tip 3",
+    "Tip 4",
+    "Tip 5"
+  ]
+}}
 
-3. **Hashtag Strategy**
-   - 5 niche-specific hashtags
-   - 5 trending/popular hashtags
-   - 5 engagement-focused hashtags
+**Requirements:**
+- Calendar MUST have EXACTLY 30 entries (one for each day of the month)
+- Each hashtag category MUST have EXACTLY 5 hashtags
+- Distribute posts evenly across the 3 content pillars
+- Make topics specific and actionable
+- Hooks should be attention-grabbing first lines
+- Best times should vary throughout the day
 
-4. **Optimal Posting Times**
-   - Best times to post based on target audience
-   - Include specific hours and days
-
-5. **Engagement Strategy**
-   - Tips for increasing engagement
-   - Call-to-action suggestions
-   - Community building tactics
-
-Format your response in clear, structured JSON format with these keys:
-- content_pillars: array of objects with 'name' and 'description'
-- calendar: array of 30 objects with 'day', 'post_type', 'pillar', 'topic', 'hook', 'best_time'
-- hashtags: object with 'niche', 'trending', 'engagement' arrays
-- posting_times: array of objects with 'day' and 'times'
-- engagement_tips: array of strings
-
-Make it actionable, specific to the niche, and optimized for Instagram's algorithm.
+Return ONLY the JSON object, nothing else.
 """
 
 

@@ -2,7 +2,7 @@
 curl http://localhost:8000/api/health/ | python3 -m json.tool
 
 # Via Ngrok
-curl https://your-ngrok-url.ngrok-free.app/api/health/ | python3 -m json.tool
+curl https://stilted-shredless-france.ngrok-free.dev/api/health/ | python3 -m json.tool
 
 # Locale
 curl -X POST http://localhost:8000/api/test-ollama/ \
@@ -10,7 +10,7 @@ curl -X POST http://localhost:8000/api/test-ollama/ \
   -d '{"prompt": "Ciao! Come stai?"}' | python3 -m json.tool
 
 # Via Ngrok
-curl -X POST https://your-ngrok-url.ngrok-free.app/api/test-ollama/ \
+curl -X POST https://stilted-shredless-france.ngrok-free.dev/api/test-ollama/ \
   -H "Content-Type: application/json" \
   -d '{"prompt": "Dimmi una barzelletta"}' | python3 -m json.tool
 
@@ -25,7 +25,7 @@ curl -X POST http://localhost:8000/api/generate-strategy/ \
   }' | python3 -m json.tool
 
 # Via Ngrok
-curl -X POST https://your-ngrok-url.ngrok-free.app/api/generate-strategy/ \
+curl -X POST https://stilted-shredless-france.ngrok-free.dev/api/generate-strategy/ \
   -H "Content-Type: application/json" \
   -d '{
     "niche": "Travel Photography",
@@ -45,7 +45,7 @@ curl -X POST http://localhost:8000/api/generate-content/ \
   }' | python3 -m json.tool
 
 # Via Ngrok
-curl -X POST https://your-ngrok-url.ngrok-free.app/api/generate-content/ \
+curl -X POST https://stilted-shredless-france.ngrok-free.dev/api/generate-content/ \
   -H "Content-Type: application/json" \
   -d '{
     "topic": "Healthy breakfast ideas",
@@ -63,7 +63,7 @@ curl -X POST http://localhost:8000/api/generate-trending-reels/ \
   }' | python3 -m json.tool
 
 # Via Ngrok
-curl -X POST https://your-ngrok-url.ngrok-free.app/api/generate-trending-reels/ \
+curl -X POST https://stilted-shredless-france.ngrok-free.dev/api/generate-trending-reels/ \
   -H "Content-Type: application/json" \
   -d '{
     "niche": "Digital Marketing",
@@ -79,7 +79,7 @@ curl -X POST http://localhost:8000/api/optimize-idea/ \
   }' | python3 -m json.tool
 
 # Via Ngrok
-curl -X POST https://your-ngrok-url.ngrok-free.app/api/optimize-idea/ \
+curl -X POST https://stilted-shredless-france.ngrok-free.dev/api/optimize-idea/ \
   -H "Content-Type: application/json" \
   -d '{
     "idea_content": "Tutorial on meal prep for the week",
@@ -95,7 +95,7 @@ curl -X POST http://localhost:8000/api/regenerate-strategy/ \
   }' | python3 -m json.tool
 
 # Via Ngrok
-curl -X POST https://your-ngrok-url.ngrok-free.app/api/regenerate-strategy/ \
+curl -X POST https://stilted-shredless-france.ngrok-free.dev/api/regenerate-strategy/ \
   -H "Content-Type: application/json" \
   -d '{
     "previous_strategy": "Old strategy...",
