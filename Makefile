@@ -57,6 +57,11 @@ pull-model: ## Scarica il modello llama3.2 in Ollama
 	docker exec -it ollama ollama pull llama3.2
 	@echo "$(GREEN)Model downloaded!$(NC)"
 
+pull-fast-model: ## Scarica modello veloce llama3.2:1b
+	@echo "$(GREEN)Pulling fast model llama3.2:1b...$(NC)"
+	docker exec -it ollama ollama pull llama3.2:1b
+	@echo "$(GREEN)Fast model downloaded!$(NC)"
+
 list-models: ## Lista tutti i modelli Ollama disponibili
 	docker exec -it ollama ollama list
 
